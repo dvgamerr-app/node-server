@@ -1,12 +1,29 @@
-# REST-API [auth.touno.io]
+# @touno-io/server
 
-![DUB](https://img.shields.io/dub/l/vibe-d.svg?style=flat-square)
+### Installation
+```bash
+npm i @touno-io/server
+// or
+yarn i @touno-io/server
+```
 
-API สำหรับเชื่อมต่อกับ 3-Party อื่นๆ แบบ OAuth2 เพื่อช่วยให้ระบบ TOUNO.io ทำงานได้โดยไม่จำเป็นต้องเชื่อมต่อกับ ระบบอื่นๆ ตัวตัวเอง.
+**sample**
+```javascript
+const serv = require('@touno.io/server')
 
-### Features
-- OAuth2 และ Callback Endpoint.
+serv.create('web.opensource').then(async app => {
+  app.get('/test', serv.tracking(async (req, res) => {
+    res.end('test')
+  }))
 
+  await app.start()
+}).catch(ex => {
+  console.log(ex)
+  await serv.close()
+  process.exit(1)
+})
+
+```
+----------
 ### License
 MIT © 2018 Touno™
-
