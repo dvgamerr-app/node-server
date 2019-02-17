@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "description": "Endpoint API for appilication server window, linux",
   "main": "index.js",
-  "private": true,
+  "private": false,
   "scripts": {
-    "test": "node test"
+    "test": "node index.dev.js",
+    "dev": "env-cmd .env backpack",
+    "eslint": "eslint --ext .js,.vue --ignore-path .eslintignore ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/touno-io/server.git"
   },
-  "author": "Mr.Kananek Thongkam",
+  "author": "Mr.Kananek T.",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/touno-io/server/issues"
@@ -21,25 +23,26 @@
     "LICENSE",
     "package.json",
     "middleware.js",
-    "index.js"
+    "index.js",
+    "helper"
   ],
   "homepage": "https://github.com/touno-io/server#readme",
   "dependencies": {
-    "@touno-io/db": "^1.1.1",
     "@touno-io/debuger": "^1.3.5",
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "cookie-parser": "^1.4.4",
+    "express": "^4.16.3",
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "babel-preset-env": "^1.7.0",
-    "eslint": "^5.10.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-html": "^5.0.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^8.0.0",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0",
+    "backpack-core": "^0.7.0",
+    "env-cmd": "^8.0.2",
+    "eslint": "^5.12.1",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-backpack": "^0.2.2",
+    "eslint-plugin-vue": "^5.1.0",
     "youch": "^2.0.10",
     "youch-terminal": "^1.0.0"
   }
