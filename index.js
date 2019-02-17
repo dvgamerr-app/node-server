@@ -2,35 +2,41 @@ const { debuger } = require('@touno-io/debuger')
 const express = require('express')
 
 const middleware = require('./middleware')
+const tracking = require('./helper/tracking')
 
 const reqTimeout = 30000
-const reqPort = parseInt(process.env.PORT) || 3000
+const reqPort = process.env.PORT || 3000
 const app = express()
-const logger = debuger.scope('router')
-let __listen = null
+const logger = debuger.scope('LISTENING')
+global.listen = null
+global.serverName = '@touno-io'
 
 let server = {
-  async create () {
-    if (__listen) __listen.close()
+  tracking,
+  async create (name) {
+    if (name) global.serverName = name
+    if (global.listen) global.listen.close()
     middleware(app, server)
+    app.start = server.start
     return app
   },
   async start () {
-    if (__listen) __listen.close()
+    if (global.listen) global.listen.close()
     await startListenServer()
   },
   async close () {
-    if (__listen) __listen.close()
+    if (global.listen) global.listen.close()
+    logger.success(`Server [${global.serverName}] on port ${reqPort} closed.`)
   }
 }
 
 const startListenServer = () => new Promise((resolve, reject) => {
   try {
-    __listen = app.listen(reqPort, () => {
-      logger.start(`listening on port ${reqPort}!`)
+    global.listen = app.listen(reqPort, () => {
+      logger.start(`Server [${global.serverName}] on port ${reqPort} Ready!`)
       resolve()
     })
-    __listen.setTimeout(reqTimeout)
+    global.listen.setTimeout(reqTimeout)
   } catch (ex) {
     reject(ex)
   }
