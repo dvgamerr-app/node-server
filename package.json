@@ -1,6 +1,6 @@
 {
   "name": "@touno-io/server",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Endpoint API for appilication server window, linux",
   "main": "index.js",
   "private": false,
