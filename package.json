@@ -43,6 +43,8 @@
     "eslint-loader": "^2.0.0",
     "eslint-plugin-backpack": "^0.2.2",
     "eslint-plugin-vue": "^5.1.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
     "youch": "^2.0.10",
     "youch-terminal": "^1.0.0"
   }

@@ -47,11 +47,6 @@ module.exports = (app, server) => {
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
 
-  app.use((err, req, res, next) => {
-    logger.error(err)
-    res.status(500).json({ error: err.message })
-  })
-
   app.get('/online', Tracking(async (req, res) => {
     res.json({ online: true })
   }))
